@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection()
 
-const levelFile = require("./levels.json");
+const levelFile = require("./data/levels.json");
 
 const snipes = new Discord.Collection()
 
@@ -151,7 +151,7 @@ function RandomXp(message) {
     if(xpUser >= nextlevelXp){
         levelFile[idUser].level += 1;
 
-        fs.writeFile("./levels.json", JSON.stringify(levelFile), err => {
+        fs.writeFile("./data/levels.json", JSON.stringify(levelFile), err => {
             if(err) console.log(err);
         });
 
