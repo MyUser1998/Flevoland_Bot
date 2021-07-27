@@ -49,7 +49,8 @@ module.exports.run = async (client, message, args) => {
                         SEND_MESSAGES: true,
                         ATTACH_FILES: true,
                         CONNECT: true,
-                        ADD_REACTIONS: true
+                        ADD_REACTIONS: true,
+                        READ_MESSAGE_HISTORY: true
                     });
 
                     var emedParent = new Discord.MessageEmbed()
