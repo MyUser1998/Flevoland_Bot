@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection()
 
-const levelFile = require("/levels.json");
+const levelFile = require("./levels.json/");
 
 const snipes = new Discord.Collection()
 
