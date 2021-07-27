@@ -4,7 +4,7 @@ module.exports.run = async (client, message, args) => {
     
     const catergoryID = "868138224218947664";
 
-    if(!message.hasPermissions("MANAGE_MESSAGES")) return message.reply("U kan deze command niet uitvoeren!");
+    if(!message.guild.members.filter("KICK_MEMBERS")) return message.reply("U kan deze command niet uitvoeren!");
 
     if(message.channel.parentID == catergoryID){
         message.channel.delete();
