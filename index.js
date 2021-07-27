@@ -3,6 +3,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 client.commands = new Discord.Collection()
 
+const levelFile = require("./levels.json");
+
 const snipes = new Discord.Collection()
 
 fs.readdir("./commands/", (err, files) => {
@@ -42,10 +44,13 @@ client.on("message", async message => {
     let cmd = messageArray[0];
     let args = messageArray.slice(1);
 
+    RandomXp(message);
+
     if(!message.content.startsWith(prefix)) return;
 
     let commandfile = client.commands.get(cmd.slice(prefix.length));
     if(commandfile) commandfile.run(client,message,args);
+
 })
 
 
@@ -119,3 +124,45 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
     .setThumbnail(oldMessage.author.displayAvatarURL({dynamic: true}));
     await LogChannel.send(EdittedLog)
 }); 
+
+function RandomXp(message) {
+
+    var randomNumber = Math.floor(Math.random() * 15) +1;
+
+    var idUser = message.author.id;
+
+    if(!levelFile[idUser]){
+        levelFile[id.user] = {
+            xp: 0,
+            level: 0
+        }
+    }
+
+    levelFile[idUser].xp += randomNumber;
+
+    var levelUser =  levelFile[idUser].level;
+
+    var xpUser =  levelFile[idUser].xp;
+
+    var nextlevelXp = levelUser * 300;
+
+    if(nextlevelXp == 0) nextlevelXp = 100;
+
+    if(xpUser >= nextlevelXp){
+        levelFile[idUser].level += 1;
+
+        fs.writeFile("./levels.json", JSON.stringify(levelFile), err => {
+            if(err) console.log(err);
+        });
+
+        var embedLevel = new Discord.MessageEmbed()
+            .setTitle("Levels")
+            .setColor("#ff6f00")
+            .setDescription("Uw nieuwe rank is: ", levelFile[idUser].level)
+            .setFooter("Flevoland")
+            .setTimestamp();
+        message.channel.send(embedLevel);
+
+    }
+
+}
