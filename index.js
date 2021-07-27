@@ -118,4 +118,4 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
     .setColor("RANDOM")
     .setThumbnail(oldMessage.author.displayAvatarURL({dynamic: true}));
     await LogChannel.send(EdittedLog)
-});
+}); 

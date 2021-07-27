@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
-    console.log("works")
+    return message.reply("Hallo!");
 }
 
 module.exports.help = {
