@@ -4,7 +4,7 @@ const canvaCord = require("canvacord");
 
 module.exports.run = async (client, message, args) => {
     
-    const levelFile = JSON.parse(fs.readFileSync("./levels.json"));
+    const levelFile = JSON.parse(fs.readFileSync("/levels.json"));
 
     const member = message.member.id;
 
